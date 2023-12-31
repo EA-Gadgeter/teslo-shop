@@ -4,6 +4,8 @@
     "no-unused-vars": "warn",
     "semi": "error",
     "quotes": ["error", "double"],
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "import/no-anonymous-default-export": "off",
+    "react/display-name": "off"
   }
 }
