@@ -1,4 +1,4 @@
-export * from "./TopMenu";
-export * from "./PageNotFound";
-export * from "./Title";
-export * from "./Sidebar";
+export { TopMenu } from "./TopMenu";
+export { PageNotFound } from "./PageNotFound";
+export { Title } from "./Title";
+export { Sidebar } from "./Sidebar";
