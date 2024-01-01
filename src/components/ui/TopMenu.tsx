@@ -1,10 +1,12 @@
 import Link from "next/link";
 
+import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
+
 import { titleFont } from "@/config/fonts";
 
 export const TopMenu = () => {
   return (
-    <nav className="w-full flex justify-between items-center px-5">
+    <nav className="w-full flex pt-2 justify-between items-center px-5">
       <Link href="/"> 
         <span className={`${titleFont.className} antialiased font-bold`}>Teslo</span>
         <span> | Shop</span>
@@ -24,8 +26,22 @@ export const TopMenu = () => {
         </Link>
       </div>
 
-      <div className="flex items-center">
-        <Link></Link>
+      <div className="flex items-center gap-4">
+        <Link href="/search">
+          <IoSearchOutline className="w-5 h-5"/>
+        </Link>
+
+        <Link href="/search">
+          <div className="relative">
+            <span className="absolute px-1 text-xs font-bold rounded-full -top-2 -right-2 bg-blue-700 text-white">3</span>
+            
+            <IoCartOutline className="w-5 h-5" />
+          </div>
+        </Link>
+
+        <button className="p-2 rounded-md transition-all hover:bg-gray-100">
+          Menú
+        </button>
       </div>
     </nav>
   );
