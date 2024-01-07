@@ -21,7 +21,7 @@ export default function() {
       <div className="flex flex-col w-[1000px]">
         <Title title="Carrito" />
 
-        <span>Agregar más productos</span>
+        <span>Agrega más productos</span>
         <Link href="/" className="underline mb-5">
           Continúa comprando
         </Link>
@@ -81,7 +81,7 @@ export default function() {
               href="/checkout/address"
               className="w-full block mt-5 btn-primary text-center"
             >
-              Pagar
+              Siguiente
             </Link>
           </div>
         </div>
