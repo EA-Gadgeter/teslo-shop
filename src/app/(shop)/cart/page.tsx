@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 import { Title } from "@/components/ui";
 import { QuantitySelector } from "@/components/product";
@@ -13,6 +14,8 @@ const productsInCart = [
 ];
 
 export default function() {
+  if (productsInCart.length <= 0) return redirect("/empty");
+
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
@@ -76,7 +79,7 @@ export default function() {
 
             <Link 
               href="/checkout/address"
-              className="w-full block mt-5 mb-2 btn-primary text-center"
+              className="w-full block mt-5 btn-primary text-center"
             >
               Pagar
             </Link>
