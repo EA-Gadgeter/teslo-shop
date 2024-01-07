@@ -47,7 +47,7 @@ export const Sidebar = () => {
       {/* Sidebar */}
       <nav
         className={`
-          w-[500px] h-screen
+          w-full sm:w-[500px] h-screen
           fixed right-0 top-0 z-20
           p-5
           bg-white shadow-2xl
