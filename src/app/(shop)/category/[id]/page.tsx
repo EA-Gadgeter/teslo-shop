@@ -1,4 +1,4 @@
-import { initialData } from "@/mocks/mocks";
+import { initialData } from "@/seed/seed";
 
 import type { Category } from "@/interfaces/product.interface";
 

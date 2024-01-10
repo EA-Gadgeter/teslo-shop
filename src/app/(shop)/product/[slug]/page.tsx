@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import { titleFont } from "@/config/fonts";
 
-import { initialData } from "@/mocks/mocks";
+import { initialData } from "@/seed/seed";
 
 import { SizeSelector, QuantitySelector, ProductSlideshow, ProductMobileSlideshow } from "@/components/product";
 

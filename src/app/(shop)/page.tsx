@@ -1,16 +1,26 @@
 import { Title } from "@/components/ui";
 import { ProductsGrid } from "@/components/products";
 
-import { initialData } from "@/mocks/mocks";
+import { getPaginatedProductsWithImages } from "@/actions/product";
 
-const products = initialData.products;
+interface Props {
+  searchParams: {
+    page?: string;
+  }
+}
 
-export default function Home() {
+export default async function({ searchParams }: Props) {
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+
+  const { products } = await getPaginatedProductsWithImages({
+    page
+  });
+
   return (
     <>
       <Title title="Tienda" subtitle="Todos los productos" className="mb-2" />
 
-      <ProductsGrid products={products} />
+      <ProductsGrid products={ products } />
     </>
   );
 }

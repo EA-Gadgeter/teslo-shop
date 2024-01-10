@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { Title } from "@/components/ui";
 import { QuantitySelector } from "@/components/product";
 
-import { initialData } from "@/mocks/mocks";
+import { initialData } from "@/seed/seed";
 
 const productsInCart = [
   initialData.products[0],
