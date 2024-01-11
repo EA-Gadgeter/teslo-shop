@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 import { Title } from "@/components/ui";
 import { ProductsGrid } from "@/components/products";
 
@@ -12,9 +14,13 @@ interface Props {
 export default async function({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
-  const { products } = await getPaginatedProductsWithImages({
+  const { products, totalPages, currentPage } = await getPaginatedProductsWithImages({
     page
   });
+
+  console.log({ currentPage, totalPages });
+
+  if (products.length === 0) return redirect("/");
 
   return (
     <>
