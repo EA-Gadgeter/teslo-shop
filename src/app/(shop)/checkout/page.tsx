@@ -11,7 +11,7 @@ const productsInCart = [
   initialData.products[2]
 ];
 
-export default function() {
+export default function CheckoutPage() {
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
@@ -89,7 +89,7 @@ export default function() {
             </Link>
 
             <p className="text-xs text-center">
-              Al hacer lick en "Ordenar", aceptas nuestros <a href="#" className="underline">términos y condiciones</a> y <a href="#" className="underline">política de privacidad</a>
+              Al hacer lick en &quot;Ordenar&quot;, aceptas nuestros <a href="#" className="underline">términos y condiciones</a> y <a href="#" className="underline">política de privacidad</a>
             </p>
           </div>
         </div>

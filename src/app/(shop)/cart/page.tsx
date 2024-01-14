@@ -13,7 +13,7 @@ const productsInCart = [
   initialData.products[2]
 ];
 
-export default function() {
+export default function CartPage() {
   if (productsInCart.length <= 0) return redirect("/empty");
 
   return (

@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { redirect } from "next/navigation";
 
 import { Title, Pagination } from "@/components/ui";
@@ -11,7 +13,7 @@ interface Props {
   }
 }
 
-export default async function({ searchParams }: Props) {
+export default async function HomePage({ searchParams }: Props) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
   const { products, totalPages } = await getPaginatedProductsWithImages({

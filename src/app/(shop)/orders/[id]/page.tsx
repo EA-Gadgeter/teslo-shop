@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 
 import { IoCartOutline } from "react-icons/io5";
@@ -19,7 +18,7 @@ interface Props {
   }
 }
 
-export default function({ params }: Props) {
+export default function OrderPage({ params }: Props) {
   const { id } = params;
   const isPaid = true;
 

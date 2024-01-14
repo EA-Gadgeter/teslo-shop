@@ -15,7 +15,7 @@ export const Pagination: React.FC<Props> = ({ totalPages }) => {
 
   // Forma de obtener los search params del navegador, pueden ser nulos
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) || 1; // Este operador me asegura de evitar Nan o 0 al pasarlos a 1
+  const currentPage = Number(searchParams.get("page")) || 1; // Este operador me asegura de evitar NaN o 0 al pasarlos a 1
 
   // Si es algo negativo mandamos a al pathname que seria la "1"
   if (currentPage < 0) return redirect(pathName);
@@ -52,13 +52,16 @@ export const Pagination: React.FC<Props> = ({ totalPages }) => {
 
           {
             allPages.map((page, index) => {
+              const currentPageStyles = page === currentPage
+                ? "bg-blue-500 shadow-sm text-white hover:bg-blue-700"
+                : "bg-transparent text-gray-800 hover:bg-gray-200";
 
               return (
                 <li className="page-item" key={`${page}-${index}`}>
                   <Link
                     className={`
-                      page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none
-                      ${page === currentPage && "bg-blue-500 shadow-sm text-white hover:text-white hover:bg-blue-700"}
+                      page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded focus:shadow-none
+                      ${currentPageStyles}
                     `}
                     href={createPageUrl(page)}
                   >
