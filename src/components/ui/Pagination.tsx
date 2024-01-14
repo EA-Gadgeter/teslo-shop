@@ -65,7 +65,7 @@ export const Pagination: React.FC<Props> = ({ totalPages }) => {
                     {page}
                   </Link>
                 </li>
-              )
+              );
             })
           }
 
