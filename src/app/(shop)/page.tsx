@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { Title } from "@/components/ui";
+import { Title, Pagination } from "@/components/ui";
 import { ProductsGrid } from "@/components/products";
 
 import { getPaginatedProductsWithImages } from "@/actions/product";
@@ -18,8 +18,6 @@ export default async function({ searchParams }: Props) {
     page
   });
 
-  console.log({ currentPage, totalPages });
-
   if (products.length === 0) return redirect("/");
 
   return (
@@ -27,6 +25,8 @@ export default async function({ searchParams }: Props) {
       <Title title="Tienda" subtitle="Todos los productos" className="mb-2" />
 
       <ProductsGrid products={ products } />
+
+      <Pagination totalPages={totalPages} />
     </>
   );
 }
