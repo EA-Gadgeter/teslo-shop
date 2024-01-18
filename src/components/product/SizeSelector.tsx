@@ -3,6 +3,7 @@ import type { Size } from "@/interfaces/product.interface";
 interface Props {
   selectedSize?: Size;
   availableSizes: Size[];
+  // eslint-disable-next-line no-unused-vars
   setSize: (size: Size) => void;
 }
 

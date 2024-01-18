@@ -4,6 +4,7 @@ import { IoRemoveCircleOutline, IoAddCircleOutline } from "react-icons/io5";
 
 interface Props {
   quantity: number;
+  // eslint-disable-next-line no-unused-vars
   setQuantity: (value: number) => void;
 }
 
