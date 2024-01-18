@@ -1,6 +1,7 @@
 export const revalidate = 604800; // La pagina se regenera cada 7 días
 
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import { getProductBySlug } from "@/actions/product";
 
@@ -18,6 +19,25 @@ interface Props {
   params: {
     slug: string;
   }
+}
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const slug = params.slug;
+
+  const product = await getProductBySlug(slug);
+
+  return {
+    title: product?.title,
+    description: product?.description,
+
+    openGraph: {
+      title: product?.title,
+      description: product?.description,
+      images: [`/products/${product?.images[1]}}`] // Debería ir el url completo, el que incluye https
+    }
+  };
 }
 
 export default async function ProductPage({ params }: Props) {
