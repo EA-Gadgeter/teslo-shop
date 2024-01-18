@@ -1,11 +1,12 @@
 import type { Size } from "@/interfaces/product.interface";
 
 interface Props {
-  selectedSize: Size;
+  selectedSize?: Size;
   availableSizes: Size[];
+  setSize: (size: Size) => void;
 }
 
-export const  SizeSelector: React.FC<Props> = ({ selectedSize, availableSizes }) => {
+export const  SizeSelector: React.FC<Props> = ({ selectedSize, availableSizes, setSize }) => {
   const selectedSizeStyle = "underline";
 
   return (
@@ -21,6 +22,7 @@ export const  SizeSelector: React.FC<Props> = ({ selectedSize, availableSizes })
                 text-lg hover:underline 
                 ${selectedSize === size && selectedSizeStyle}
               `}
+              onClick={() => setSize(size)}
             >
               {size}
             </button>

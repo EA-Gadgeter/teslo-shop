@@ -8,8 +8,7 @@ import { getProductBySlug } from "@/actions/product";
 import { titleFont } from "@/config/fonts";
 
 import { 
-  SizeSelector,
-  QuantitySelector,
+  AddToCart,
   ProductSlideshow, 
   ProductMobileSlideshow,
   StockLabel
@@ -74,13 +73,7 @@ export default async function ProductPage({ params }: Props) {
           ${product.price}
         </p>
 
-        <SizeSelector selectedSize={product.sizes[0]} availableSizes={product.sizes} />
-
-        <QuantitySelector quantity={0} />
-
-        <button className="btn-primary my-5">
-          Agregar al carrito
-        </button>
+        <AddToCart product={product} />
 
         <h3 className="font-bold text-sm">
           Descripción
