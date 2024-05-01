@@ -11,10 +11,10 @@ import {
   IoTicketOutline
 } from "react-icons/io5";
 
-import { useUIStore } from "@/stores";
+import { uiStore } from "@/stores";
 
 export const Sidebar = () => {
-  const { isSideMenuOpen, closeSideMenu } = useUIStore();
+  const { isSideMenuOpen, closeSideMenu } = uiStore();
 
   const menuStyle = "translate-x-full";
 

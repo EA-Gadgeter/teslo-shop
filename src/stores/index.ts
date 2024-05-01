@@ -1,3 +1,3 @@
-export { useUIStore } from "./uiStore";
+export { uiStore } from "./uiStore";
 export { cartStore } from "./cartStore";
 
