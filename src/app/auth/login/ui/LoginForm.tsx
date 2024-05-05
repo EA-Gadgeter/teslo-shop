@@ -1,10 +1,25 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 import Link from "next/link";
 
+import { IoInformationOutline } from "react-icons/io5";
+
 import { authenticate } from "@/actions/auth/login";
+
+const LoginButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      className="btn-primary"
+    >
+    Ingresar
+    </button>
+  );
+};
 
 export const LoginForm = () => {
   const [ state, dispatch ] = useFormState(authenticate, undefined);
@@ -26,12 +41,22 @@ export const LoginForm = () => {
         name="password"
       />
 
-      <button
-        type="submit"
-        className="btn-primary"
+      <div
+        className="flex h-8 mb-2 items-end space-x-1"
+        aria-live="polite"
+        aria-atomic="true"
       >
-          Ingresar
-      </button>
+        {
+          state === "CredentialSignin" && (
+            <>
+              <IoInformationOutline className="w-5 h-5 text-red-500" />
+              <p className="text-sm text-red-500">Credenciales incorrectas</p>
+            </>
+          )
+        }
+      </div>
+
+      <LoginButton />
 
       <div className="flex items-center my-5">
         <div className="flex-1 border-t border-gray-500"></div>
@@ -41,7 +66,8 @@ export const LoginForm = () => {
 
       <Link
         href="/auth/new-account" 
-        className="btn-secondary text-center">
+        className="btn-secondary text-center"
+      >
           Crear una nueva cuenta
       </Link>
     </form>
