@@ -132,39 +132,33 @@ export const Sidebar = () => {
           )}
         </ul>
 
-        <div className="w-full h-px bg-gray-200 my-10"></div>
+        {isAuthenticated && session?.user.role === "admin" && (
+          <>
+            <div className="w-full h-px bg-gray-200 my-10" />
 
-        <ul className="flex flex-col gap-3.5 mt-10">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoShirtOutline size={30} />
-              <span className="text-xl">Productos</span>
-            </Link>
-          </li>
+            <ul className="flex flex-col gap-3.5 mt-10">
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoShirtOutline size={30} />
+                  <span className="text-xl">Productos</span>
+                </Link>
+              </li>
 
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoTicketOutline size={30} />
-              <span className="text-xl">Ordenes</span>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoPeopleOutline size={30} />
-              <span className="text-xl">Usuarios</span>
-            </Link>
-          </li>
-        </ul>
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoPeopleOutline size={30} />
+                  <span className="text-xl">Usuarios</span>
+                </Link>
+              </li>
+            </ul>
+          </>
+        )}
       </nav>
     </>
   );
