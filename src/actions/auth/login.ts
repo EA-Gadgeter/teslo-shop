@@ -14,8 +14,8 @@ export const authenticate = async (
 
     return "Success";
   } catch (error) {
-    if ((error as any).type === "CredentialSignin") {
-      return "CredentialSignin";
+    if ((error as any).type === "CredentialsSignin") {
+      return "CredentialsSignin";
     }
 
     return "UnknownError";

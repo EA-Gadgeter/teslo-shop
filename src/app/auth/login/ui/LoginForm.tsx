@@ -29,8 +29,6 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (state === "Success") {
-      // redireccionar
-      // router.replace('/');
       window.location.replace("/");
     }
   }, [state]);
@@ -56,7 +54,7 @@ export const LoginForm = () => {
         aria-live="polite"
         aria-atomic="true"
       >
-        {state === "CredentialSignin" && (
+        {state === "CredentialsSignin" && (
           <>
             <IoInformationOutline className="w-5 h-5 text-red-500" />
             <p className="text-sm text-red-500">Credenciales incorrectas</p>

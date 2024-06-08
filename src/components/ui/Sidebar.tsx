@@ -5,13 +5,17 @@ import Link from "next/link";
 import {
   IoCloseOutline,
   IoLogInOutline,
-  IoLogOutOutline, IoPeopleOutline,
+  IoLogOutOutline,
+  IoPeopleOutline,
   IoPersonOutline,
-  IoSearchOutline, IoShirtOutline,
-  IoTicketOutline
+  IoSearchOutline,
+  IoShirtOutline,
+  IoTicketOutline,
 } from "react-icons/io5";
 
 import { uiStore } from "@/stores";
+
+import { logout } from "@/actions/auth/logout";
 
 export const Sidebar = () => {
   const { isSideMenuOpen, closeSideMenu } = uiStore();
@@ -30,7 +34,6 @@ export const Sidebar = () => {
           "
         ></div>
       )}
-
 
       {/* Blur */}
       {isSideMenuOpen && (
@@ -56,18 +59,18 @@ export const Sidebar = () => {
         `}
       >
         <button className="absolute top-5 right-5" onClick={closeSideMenu}>
-          <IoCloseOutline size={40}/>
+          <IoCloseOutline size={40} />
         </button>
 
         <div className="relative mt-14">
-          <IoSearchOutline size={20} className="absolute top-2 left-2"/>
+          <IoSearchOutline size={20} className="absolute top-2 left-2" />
 
           <input
             className="
               w-full
               py-1 pl-10
               text-base
-              border-b-2 border-gray-200 
+              border-b-2 border-gray-200
               bg-gray-50 rounded
               focus:outline-none focus:border-blue-500
             "
@@ -80,10 +83,11 @@ export const Sidebar = () => {
         <ul className="flex flex-col gap-3.5 mt-10">
           <li>
             <Link
-              href="/"
+              href="/profile"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={closeSideMenu}
             >
-              <IoPersonOutline size={30}/>
+              <IoPersonOutline size={30} />
               <span className="text-xl">Perfil</span>
             </Link>
           </li>
@@ -93,7 +97,7 @@ export const Sidebar = () => {
               href="/"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
             >
-              <IoTicketOutline size={30}/>
+              <IoTicketOutline size={30} />
               <span className="text-xl">Ordenes</span>
             </Link>
           </li>
@@ -103,19 +107,19 @@ export const Sidebar = () => {
               href="/"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
             >
-              <IoLogInOutline size={30}/>
+              <IoLogInOutline size={30} />
               <span className="text-xl">Ingresar</span>
             </Link>
           </li>
 
           <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+            <button
+              className="w-full flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={() => logout()}
             >
-              <IoLogOutOutline size={30}/>
+              <IoLogOutOutline size={30} />
               <span className="text-xl">Salir</span>
-            </Link>
+            </button>
           </li>
         </ul>
 
@@ -127,7 +131,7 @@ export const Sidebar = () => {
               href="/"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
             >
-              <IoShirtOutline size={30}/>
+              <IoShirtOutline size={30} />
               <span className="text-xl">Productos</span>
             </Link>
           </li>
@@ -137,7 +141,7 @@ export const Sidebar = () => {
               href="/"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
             >
-              <IoTicketOutline size={30}/>
+              <IoTicketOutline size={30} />
               <span className="text-xl">Ordenes</span>
             </Link>
           </li>
@@ -147,7 +151,7 @@ export const Sidebar = () => {
               href="/"
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
             >
-              <IoPeopleOutline size={30}/>
+              <IoPeopleOutline size={30} />
               <span className="text-xl">Usuarios</span>
             </Link>
           </li>
