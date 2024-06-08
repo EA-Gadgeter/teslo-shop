@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+import { useSession } from "next-auth/react";
+
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -21,6 +23,9 @@ export const Sidebar = () => {
   const { isSideMenuOpen, closeSideMenu } = uiStore();
 
   const menuStyle = "translate-x-full";
+
+  const { data: session } = useSession();
+  const isAuthenticated = session ? true : false;
 
   return (
     <>
@@ -81,46 +86,50 @@ export const Sidebar = () => {
 
         {/* Menu */}
         <ul className="flex flex-col gap-3.5 mt-10">
-          <li>
-            <Link
-              href="/profile"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-              onClick={closeSideMenu}
-            >
-              <IoPersonOutline size={30} />
-              <span className="text-xl">Perfil</span>
-            </Link>
-          </li>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+                  onClick={closeSideMenu}
+                >
+                  <IoPersonOutline size={30} />
+                  <span className="text-xl">Perfil</span>
+                </Link>
+              </li>
 
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoTicketOutline size={30} />
-              <span className="text-xl">Ordenes</span>
-            </Link>
-          </li>
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoTicketOutline size={30} />
+                  <span className="text-xl">Ordenes</span>
+                </Link>
+              </li>
 
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoLogInOutline size={30} />
-              <span className="text-xl">Ingresar</span>
-            </Link>
-          </li>
-
-          <li>
-            <button
-              className="w-full flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
-              onClick={() => logout()}
-            >
-              <IoLogOutOutline size={30} />
-              <span className="text-xl">Salir</span>
-            </button>
-          </li>
+              <li>
+                <button
+                  className="w-full flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+                  onClick={() => logout()}
+                >
+                  <IoLogOutOutline size={30} />
+                  <span className="text-xl">Salir</span>
+                </button>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link
+                href="/auth/login"
+                className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded transition-all"
+              >
+                <IoLogInOutline size={30} />
+                <span className="text-xl">Ingresar</span>
+              </Link>
+            </li>
+          )}
         </ul>
 
         <div className="w-full h-px bg-gray-200 my-10"></div>

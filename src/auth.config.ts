@@ -12,6 +12,22 @@ export const authConfig: NextAuthConfig = {
     signIn: "/auth/login",
     newUser: "/auth/new-account",
   },
+
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.data = user;
+      }
+
+      return token;
+    },
+
+    session({ session, token }) {
+      session.user = token.data as any;
+      return session;
+    },
+  },
+
   providers: [
     CredentialProvider({
       async authorize(credentials) {
@@ -24,7 +40,7 @@ export const authConfig: NextAuthConfig = {
         const { email, password } = parsedCredentials.data;
 
         const user = await prisma.user.findUnique({
-          where: { email: email.toLocaleLowerCase() }
+          where: { email: email.toLocaleLowerCase() },
         });
 
         if (!user) return null;
@@ -40,4 +56,9 @@ export const authConfig: NextAuthConfig = {
   ],
 };
 
-export const { auth: authSession, signIn, signOut } = NextAuth(authConfig);
+export const {
+  auth: authSession,
+  signIn,
+  signOut,
+  handlers,
+} = NextAuth(authConfig);
