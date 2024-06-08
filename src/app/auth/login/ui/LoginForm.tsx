@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useFormState, useFormStatus } from "react-dom";
 
 import Link from "next/link";
@@ -14,25 +16,33 @@ const LoginButton = () => {
   return (
     <button
       type="submit"
-      className="btn-primary"
+      className={`${pending ? "btn-disabled" : "btn-primary"}`}
+      disabled={pending}
     >
-    Ingresar
+      Ingresar
     </button>
   );
 };
 
 export const LoginForm = () => {
-  const [ state, dispatch ] = useFormState(authenticate, undefined);
+  const [state, dispatch] = useFormState(authenticate, undefined);
+
+  useEffect(() => {
+    if (state === "Success") {
+      // redireccionar
+      // router.replace('/');
+      window.location.replace("/");
+    }
+  }, [state]);
 
   return (
     <form className="flex flex-col" action={dispatch}>
       <label htmlFor="email">Correo electrónico</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
-        type="email" 
+        type="email"
         name="email"
       />
-
 
       <label htmlFor="email">Contraseña</label>
       <input
@@ -46,14 +56,12 @@ export const LoginForm = () => {
         aria-live="polite"
         aria-atomic="true"
       >
-        {
-          state === "CredentialSignin" && (
-            <>
-              <IoInformationOutline className="w-5 h-5 text-red-500" />
-              <p className="text-sm text-red-500">Credenciales incorrectas</p>
-            </>
-          )
-        }
+        {state === "CredentialSignin" && (
+          <>
+            <IoInformationOutline className="w-5 h-5 text-red-500" />
+            <p className="text-sm text-red-500">Credenciales incorrectas</p>
+          </>
+        )}
       </div>
 
       <LoginButton />
@@ -64,11 +72,8 @@ export const LoginForm = () => {
         <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
-      <Link
-        href="/auth/new-account" 
-        className="btn-secondary text-center"
-      >
-          Crear una nueva cuenta
+      <Link href="/auth/new-account" className="btn-secondary text-center">
+        Crear una nueva cuenta
       </Link>
     </form>
   );

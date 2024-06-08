@@ -4,11 +4,20 @@ import { signIn } from "@/auth.config";
 
 export const authenticate = async (
   prevState: string | undefined,
-  formData: FormData
+  formData: FormData,
 ) => {
   try {
-    await signIn("credentials", Object.fromEntries(formData));
+    await signIn("credentials", {
+      ...Object.fromEntries(formData),
+      redirect: false,
+    });
+
+    return "Success";
   } catch (error) {
-    return "CredentialSignin";
+    if ((error as any).type === "CredentialSignin") {
+      return "CredentialSignin";
+    }
+
+    return "UnknownError";
   }
 };
