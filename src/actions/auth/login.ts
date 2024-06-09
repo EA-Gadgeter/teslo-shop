@@ -21,3 +21,21 @@ export const authenticate = async (
     return "UnknownError";
   }
 };
+
+export const login = async (email: string, password: string) => {
+  try {
+    console.log({ email, password });
+    await signIn("credentials", { email, password, redirect: false });
+
+    return {
+      ok: true,
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      ok: false,
+      message: "No se pudo iniciar sesión",
+    };
+  }
+};
