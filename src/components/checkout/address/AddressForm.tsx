@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 
+import { addressStore } from "@/stores";
+
 import type { Country } from "@/interfaces/country.interface";
 
 type FormInputs = {
@@ -21,14 +23,17 @@ interface Props {
 }
 
 export const AddressForm: React.FC<Props> = ({ countries }) => {
+  const { address, setAddress } = addressStore(store => ({ address: store.address, setAddress: store.setAddress }));
   const { handleSubmit, register, formState: { isValid } } = useForm<FormInputs>({
     defaultValues: {
-
+      ...address
     }
   });
 
   const onSubmit = (data: FormInputs) => {
-    console.log({data});
+    // Eliminamos la porpiedad del objeto, puesto que si se guarda, tambien se carga al entrar al entrar a la pagina
+    const { rememberAddress, ...toStoreData } = data;
+    setAddress(toStoreData);
   };
 
   return (
