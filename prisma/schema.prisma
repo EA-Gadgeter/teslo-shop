@@ -39,6 +39,11 @@ model Category {
   Product Product[]
 }
 
+model Country {
+  id String @id
+  name String
+}
+
 model Product {
   id          String   @id @default(uuid())
   slug        String   @unique
