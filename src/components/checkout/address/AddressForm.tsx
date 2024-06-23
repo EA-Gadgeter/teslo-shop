@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 
+import type { Country } from "@/interfaces/country.interface";
 
 type FormInputs = {
   firstName: string;
@@ -15,7 +16,11 @@ type FormInputs = {
   rememberAddress: boolean;
 };
 
-export const AddressForm = () => {
+interface Props {
+  countries: Country[];
+}
+
+export const AddressForm: React.FC<Props> = ({ countries }) => {
   const { handleSubmit, register, formState: { isValid } } = useForm<FormInputs>({
     defaultValues: {
 
@@ -24,7 +29,7 @@ export const AddressForm = () => {
 
   const onSubmit = (data: FormInputs) => {
     console.log({data});
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
@@ -90,7 +95,11 @@ export const AddressForm = () => {
           {...register("country", { required: true })}
         >
           <option value="">[ Seleccione ]</option>
-          <option value="CRI">Costa Rica</option>
+          {
+            countries.map(country => (
+              <option key={country.id} value={country.id}>{country.name}</option>
+            ))
+          }
         </select>
       </div>
 
